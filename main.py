@@ -773,23 +773,26 @@ def image(filename):
         return response
     else:
         return "Image not found"
+    
+
+#Search Members
 
 @app.route("/searchmembers", methods=['GET', 'POST'])
 def members():
-    if request.method == 'POST':
-        search_query = request.form.get('search_query')  # 검색어 가져오기
-        if search_query:
-            query = {"username": {"$regex": search_query, "$options": "i"}}  # 사용자 이름에 검색어가 포함된 멤버를 찾는 예시
-            all_members = records.find(query)
-        else:
-            all_members = records.find()  # 검색어가 없으면 모든 멤버 정보를 데이터베이스에서 조회
-    else:
-        all_members = records.find()  # GET 요청이면 모든 멤버 정보를 데이터베이스에서 조회
+    if request.method == 'POST':  # If the request method is POST
+        search_query = request.form.get('search_query')  # Get the search query from the form
+        if search_query:  # If there is a search query
+            query = {"username": {"$regex": search_query, "$options": "i"}}  # Create a query to find members whose username contains the search query
+            all_members = records.find(query)  # Find all members that match the query
+        else:  # If there is no search query
+            all_members = records.find()  # Find all members in the database
+    else:  # If the request method is GET
+        all_members = records.find()  # Find all members in the database
 
-    all_members_list = list(all_members)  # 조회된 정보를 리스트로 변환
+    all_members_list = list(all_members)  # Convert the query result to a list
 
     # Render the members.html template with the members data
-    return render_template("members.html", data = all_members_list)  
+    return render_template("members.html", data = all_members_list)  # Return the rendered HTML template with the members data
 
 #put the following code at the end of 'app.py' script
 if __name__ == '__main__':

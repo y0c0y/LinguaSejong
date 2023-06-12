@@ -1,35 +1,38 @@
-{% extends "weblayoutactive.html" %}
-{% block title %} Lingua Sejong - Search Members {% endblock %}
-{% block text %} Search Members {% endblock %}
-{% block content %}
-<div class = "container py-4">
-    <form method = "POST" action = "/searchmembers">
-        <div class = "form-group">
-            <input type = "text" class = "form-control" name = "search_query" placeholder = "Search">
+{% extends "weblayoutactive.html" %} <!-- Extends the weblayoutactive.html file -->
+{% block title %} Lingua Sejong - Search Members {% endblock %} <!-- Sets the title of the page -->
+{% block text %} Search Members {% endblock %} <!-- Sets the text of the page -->
+{% block content %} <!-- Starts the content block -->
+<div class="container py-4"> <!-- Creates a container with padding of 4 -->
+    <form method="POST" action="/searchmembers"> <!-- Creates a form with POST method and action to /searchmembers -->
+        <div class="form-group"> <!-- Creates a form group -->
+            <input type="text" class="form-control" name="search_query" placeholder="Search">
+            <!-- Creates an input field for search query -->
         </div>
         <br>
-        <button type = "submit" class = "btn btn-dark">Search</button>
-        <button type = "button" class="btn btn-dark" onclick = "location.href = '/searchmembers'">Reset</button>
+        <button type="submit" class="btn btn-dark">Search</button> <!-- Creates a search button -->
+        <button type="button" class="btn btn-dark" onclick="location.href = '/searchmembers'">Reset</button>
+        <!-- Creates a reset button -->
     </form>
     <br>
-    <table class = "table" border = "1">
-        <thead class = "table-dark">
-            <tr>
-                <td><b>Username</b></td>
-                <td><b>Available</b></td>
-                <td><b>Learning</b></td>
+    <table class="table" border="1"> <!-- Creates a table with border of 1 -->
+        <thead class="table-dark"> <!-- Creates a table header with dark background -->
+            <tr> <!-- Creates a table row -->
+                <td><b>Username</b></td> <!-- Creates a table data cell with bold text -->
+                <td><b>Available</b></td> <!-- Creates a table data cell with bold text -->
+                <td><b>Learning</b></td> <!-- Creates a table data cell with bold text -->
             </tr>
         </thead>
 
-        {% for dt in data %}
-        <tbody id = "myTable">
-            <tr>
-                <td><a href = "{{ url_for('memberprofile', id = dt._id)}}"> {{ dt.username | e}} </a></td>
-                <td>{{ dt.available | e}}</td>
-                <td>{{ dt.learning | e}}</td>
+        {% for dt in data %} <!-- Starts a for loop for data -->
+        <tbody id="myTable"> <!-- Creates a table body with id myTable -->
+            <tr> <!-- Creates a table row -->
+                <td><a href="{{ url_for('memberprofile', id = dt._id)}}"> {{ dt.username | e}} </a></td>
+                <!-- Creates a table data cell with a link to memberprofile and username -->
+                <td>{{ dt.available | e}}</td> <!-- Creates a table data cell with available data -->
+                <td>{{ dt.learning | e}}</td> <!-- Creates a table data cell with learning data -->
             </tr>
         </tbody>
-        {% endfor %}
+        {% endfor %} <!-- Ends the for loop -->
     </table>
 </div>
-{% endblock %}
+{% endblock %} <!-- Ends the content block -->
