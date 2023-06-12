@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = "UTF-8" />
+    <meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta http-equiv = "x-ua-compatible" content = "ie=edge"/>
+    <title>{% block title %} Web Layout {% endblock %}</title>
+    <!-- Website icon -->
+    <link rel = "icon" href = "static/img/favicon.ico" type = "image/x-icon"/>
+    <!-- Font Awesome -->
+    <link
+      rel = "stylesheet"
+      href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel = "stylesheet"
+      href = "https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel = "stylesheet" href = "{{ url_for('static', filename='css/mdb.min.css') }}"/>
+  </head>
+  <body>
+    <!-- Background image -->
+    <div
+      class = "p-5 text-center bg-image"
+      style = "
+        background-image: url('static/img/background.jpg');
+        height: 250px;
+        margin-top: 55px;
+        "
+    >
+      <div class = "mask" style = "background-color: rgba(0, 0, 0, 0.6);">
+        <div class = "d-flex justify-content-center align-items-center h-100">
+          <div class = "text-white">
+            <h1 class = "mb-3"> Lingua Sejong</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% block content %} {% endblock %}
+    </div>
+    <!-- Copyright -->
+    <footer>
+        <div class = "bg-dark text-center text-light p-3" style = "background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright: LinguaSejong.com
+        </div>
+    </footer>
+    <!-- Copyright -->
+    <!-- MDB -->
+    <script type = "text/javascript" src = "{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% extends 'weblayoutactive.html' %} <!-- Extends the weblayoutactive.html file -->
+{% block title %} Lingua Sejong - Messages {% endblock %} <!-- Sets the title of the page -->
+{% block text %} Messages {% endblock %} <!-- Sets the text of the page -->
+{% block content %}
+<div class="container py-5 h-100"> <!-- Creates a container with padding and height of 100% -->
+  <div class="row justify-content-center align-items-center h-100">
+    <!-- Creates a row with centered content and height of 100% -->
+    <div class="col-12 col-lg-9 col-xl-7"> <!-- Creates a column with different widths depending on screen size -->
+      <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+        <!-- Creates a card with shadow and rounded corners -->
+        <div class="card-body p-4 p-md-5"> <!-- Creates a card body with padding -->
+          <h3>Enter Chat Room</h3> <!-- Creates a heading -->
+          <form method="POST" class="buttons"> <!-- Creates a form with POST method and class name buttons -->
+            <div class="row p-2"> <!-- Creates a row with padding -->
+              <div class="form-outline"> <!-- Creates a form outline -->
+                <input type="text" placeholder="Enter your username" name="name" value="{{name}}"
+                  class="form-control form-control-lg" />
+                <!-- Creates an input field for username with placeholder and value -->
+                <label class="form-label" for="username">Username</label> <!-- Creates a label for the input field -->
+              </div>
+            </div>
+            <div class="row p-2"> <!-- Creates a row with padding -->
+              <div class="form-outline"> <!-- Creates a form outline -->
+                <input type="text" placeholder="Room Code" name="code" value="{{code}}" class=form-control
+                  form-control-lg /> <!-- Creates an input field for room code with placeholder and value -->
+                <label class="form-label" for="inputEmail">Room Code</label>
+                <!-- Creates a label for the input field -->
+              </div>
+            </div>
+            <div class="row p-2"> <!-- Creates a row with padding -->
+              <input class="btn btn-dark" type="submit" name="join" value="Join a Room" />
+              <!-- Creates a button to join a room -->
+            </div>
+            <div class="row p-2"> <!-- Creates a row with padding -->
+              <input class="btn btn-dark" type="submit" name="create" value="Create a Room" />
+              <!-- Creates a button to create a room -->
+            </div>
+            <br> <!-- Adds a line break -->
+            {% for message in get_flashed_messages() %} <!-- Loops through flashed messages -->
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              <!-- Creates an alert message with info style -->
+              {{ message }} <!-- Displays the message -->
+              <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+              <!-- Creates a button to close the alert message -->
+            </div>
+            {% endfor %}
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
